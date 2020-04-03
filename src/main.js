@@ -3,6 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
+
+Vue.use(VueAxios, axios)
+
+Vue.use(VueAxios, {
+  secured: securedAxiosInstance,
+  plain: plainAxiosInstance
+})
 
 Vue.config.productionTip = false
 
@@ -10,6 +20,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  securedAxiosInstance,
+  plainAxiosInstance,
   components: { App },
   template: '<App/>'
 })
